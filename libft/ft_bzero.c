@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/24 15:12:50 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/09 00:13:27 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+void	ft_bzero(void *s, size_t num)
 {
-	char	hex;
-	int		idx;
+	char	*tmp;
 
-	if (n < 0)
+	tmp = (char *) s;
+	while (num > 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		*(tmp++) = 0;
+		num--;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
 }

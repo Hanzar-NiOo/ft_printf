@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/31 11:09:07 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/08 21:11:54 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	hex;
-	int		idx;
+	char			*str;
+	unsigned int	idx;
+	char			*res;
+	char			chr;
 
-	if (n < 0)
+	res = NULL;
+	str = (char *)s;
+	chr = (char)c;
+	idx = 0;
+	while (str[idx])
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		if (str[idx] == chr)
+			res = &str[idx];
+		idx++;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	if (str[idx] == chr)
+		res = &str[idx];
+	return (res);
 }

@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/09/08 21:13:22 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/14 13:12:48 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+int	ft_atoi(const char *str)
 {
-	char	hex;
-	int		idx;
+	int	idx;
+	int	sign;
+	int	result;
 
-	if (n < 0)
+	result = 0;
+	sign = 1;
+	idx = 0;
+	while (str[idx] == ' ' || (str[idx] >= 9 && str[idx] <= 13))
+		idx++;
+	if (str[idx] == '+' || str[idx] == '-')
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		if (str[idx] == '-')
+			sign *= -1;
+		idx++;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	while (str[idx] >= '0' && str[idx] <= '9')
+	{
+		result = (result * 10) + (str[idx] - '0');
+		idx++;
+	}
+	return (result * sign);
 }

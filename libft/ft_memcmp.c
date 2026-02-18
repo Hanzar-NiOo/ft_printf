@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/31 14:37:01 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/09 00:18:40 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	hex;
-	int		idx;
+	size_t			idx;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (n < 0)
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	idx = 0;
+	while (idx < n)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		if (str1[idx] != str2[idx])
+			return (str1[idx] - str2[idx]);
+		idx++;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	return (0);
 }

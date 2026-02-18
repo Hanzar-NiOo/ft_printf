@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_putlhex_fd(unsigned int n, int fd)
+void	ft_putlhex_fd(int n, int fd)
 {
 	char	hex;
 	int		idx;

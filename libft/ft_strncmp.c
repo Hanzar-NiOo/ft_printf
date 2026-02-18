@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/31 11:25:19 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/08 21:11:41 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	hex;
-	int		idx;
+	size_t	idx;
 
-	if (n < 0)
+	idx = 0;
+	while (idx < n)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		if (s1[idx] != s2[idx])
+			return ((char)s1[idx] - (char)s2[idx]);
+		idx++;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	return (0);
 }

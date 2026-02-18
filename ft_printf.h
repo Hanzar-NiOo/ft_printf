@@ -24,8 +24,8 @@ int		count_char(int i);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putusnbr_fd(unsigned int n, int fd);
-void	ft_putlhex_fd(unsigned int n, int fd);
-void	ft_putuhex_fd(unsigned int n, int fd);
+void	ft_putlhex_fd(int n, int fd);
+void	ft_putuhex_fd(int n, int fd);
 void	ft_putptr_fd(unsigned long long n, int fd);
 int		ft_printf(const char *format, ...);
 

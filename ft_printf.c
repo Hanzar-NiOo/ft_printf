@@ -25,9 +25,9 @@ void	handle_format(char c, va_list args)
 	if (c == 'u')
 		ft_putusnbr_fd(va_arg(args, unsigned int), 1);
 	if (c == 'x')
-		ft_putlhex_fd(va_arg(args, unsigned int), 1);
+		ft_putlhex_fd(va_arg(args, int), 1);
 	if (c == 'X')
-		ft_putuhex_fd(va_arg(args, unsigned int), 1);
+		ft_putuhex_fd(va_arg(args, int), 1);
 	if (c == '%')
 		ft_putchar_fd('%', 1);
 }

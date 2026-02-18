@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/09/09 22:04:15 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/14 12:59:57 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	char	hex;
-	int		idx;
+	unsigned int	idx;
+	char			*result;
 
-	if (n < 0)
+	result = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	idx = 0;
+	while (s[idx])
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		result[idx] = (f)(idx, s[idx]);
+		idx++;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	result[idx] = '\0';
+	return (result);
 }

@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/24 15:12:50 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/08 23:58:22 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+void	*ft_memmove(void *s1, const void *s2, size_t num)
 {
-	char	hex;
-	int		idx;
+	unsigned char	*dest;
+	unsigned char	*src;
+	unsigned int	idx;
 
-	if (n < 0)
+	dest = (unsigned char *)s1;
+	src = (unsigned char *)s2;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	idx = 0;
+	if (src > dest)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		while (idx < num)
+		{
+			dest[idx] = src[idx];
+			idx++;
+		}
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	else
+	{
+		while (0 < num--)
+			dest[num] = src[num];
+	}
+	return (dest);
 }

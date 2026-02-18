@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuhex_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnioo <hnioo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 20:57:48 by hnioo             #+#    #+#             */
-/*   Updated: 2025/09/28 15:35:14 by hnioo            ###   ########.fr       */
+/*   Created: 2025/08/30 23:15:00 by hnioo             #+#    #+#             */
+/*   Updated: 2025/09/09 00:14:42 by hnioo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putuhex_fd(int n, int fd)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	hex;
-	int		idx;
+	size_t	src_len;
 
-	if (n < 0)
+	src_len = ft_strlen(src);
+	if (src_len + 1 < dstsize)
+		ft_memcpy(dst, src, src_len + 1);
+	else if (dstsize != 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = -n;
+		ft_memcpy(dst, src, dstsize - 1);
+		dst[dstsize - 1] = 0;
 	}
-	if (n > 15)
-		ft_putuhex_fd(n / 16, fd);
-	idx = n % 16;
-	hex = (char)"0123456789ABCDEF"[idx];
-	ft_putchar_fd(hex, fd);
+	return (src_len);
 }
