@@ -1,5 +1,6 @@
 *.o
-ft_printf.a
+ft_printf
 libft.a
 main.c
-libftprintf
+libftprintf.a
+test
